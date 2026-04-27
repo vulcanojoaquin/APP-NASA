@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { getAllApod } from "../../services/apodService"; // Rescatamos el servicio de tu compañero
 
 const Home = ({ searchQuery }) => {
   const [data, setData] = useState([]);
@@ -6,14 +7,12 @@ const Home = ({ searchQuery }) => {
 
   useEffect(() => {
     setLoading(true);
-    const url = searchQuery
-      ? `https://69eb6fd597482ad5c527b5ee.mockapi.io/api/planetas/APOD?search=${searchQuery}`
-      : `https://69eb6fd597482ad5c527b5ee.mockapi.io/api/planetas/APOD`;
 
-    fetch(url)
-      .then((res) => res.json())
-      .then((json) => {
-        setData(json);
+    // Utilizamos el servicio abstrayendo el fetch.
+    // Le pasamos searchQuery por si el servicio maneja la búsqueda.
+    getAllApod(searchQuery)
+      .then((responseData) => {
+        setData(responseData);
         setLoading(false);
       })
       .catch((error) => {

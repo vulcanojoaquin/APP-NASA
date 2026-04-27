@@ -1,43 +1,28 @@
+
 import { useState } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './Components/Header/Header';
-import Home from './Pages/Home/Home'; // Importamos el Home real
-import './App.css';
-
-// ── Páginas placeholder (las vas a crear en tareas siguientes) ──
-const Favoritos = () => (
-  <main className="p-8 text-white">
-    <h1 className="text-3xl font-bold">⭐ Favoritos</h1>
-    <p className="mt-2 text-gray-400">Aún no tenés favoritos guardados.</p>
-  </main>
-);
-
-const Detalles = () => (
-  <main className="p-8 text-white">
-    <h1 className="text-3xl font-bold">🔭 Detalle</h1>
-    <p className="mt-2 text-gray-400">Aquí se mostrará el detalle del elemento.</p>
-  </main>
-);
+import Home from './Pages/Home/Home';
+// import AppRoutes from './routes/AppRoutes'; // Descartado para mantener el estado de búsqueda global
 
 function App() {
   const [searchQuery, setSearchQuery] = useState('');
 
   return (
-    <BrowserRouter>
+    <Router>
       {/* Header sticky — visible en TODAS las páginas */}
       <Header
         searchValue={searchQuery}
         onSearch={setSearchQuery}
       />
 
-      {/* Rutas — el header queda siempre arriba */}
+      {/* Rutas definidas aquí para poder pasarle searchQuery a Home */}
       <Routes>
-        {/* Acá le pasamos el searchQuery al Home para que filtre */}
         <Route path="/" element={<Home searchQuery={searchQuery} />} />
         <Route path="/favoritos" element={<Favoritos />} />
         <Route path="/detalles/:id" element={<Detalles />} />
       </Routes>
-    </BrowserRouter>
+    </Router>
   );
 }
 
