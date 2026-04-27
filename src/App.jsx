@@ -1,36 +1,40 @@
-
 import { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './Components/Header/Header';
 import Home from './Pages/Home/Home';
-import Detalles from './Pages/Details/Details';
-import Favoritos from './Pages/Favorites/Favorites';
-import Footer from './Footer/Footer';
-import Error404 from './Pages/Error404/Error404';
 
-// import AppRoutes from './routes/AppRoutes'; // Descartado para mantener el estado de búsqueda global
+const Favoritos = () => (
+  <main className="p-8 text-white min-h-screen bg-slate-950">
+    <h1 className="text-3xl font-bold">⭐ Favoritos</h1>
+    <p className="mt-2 text-gray-400">Aún no tenés favoritos guardados.</p>
+  </main>
+);
+
+const Detalles = () => (
+  <main className="p-8 text-white min-h-screen bg-slate-950">
+    <h1 className="text-3xl font-bold">🔭 Detalle</h1>
+    <p className="mt-2 text-gray-400">Aquí se mostrará el detalle del elemento.</p>
+  </main>
+);
 
 function App() {
   const [searchQuery, setSearchQuery] = useState('');
 
   return (
-    <Router>
+    <BrowserRouter>
       {/* Header sticky — visible en TODAS las páginas */}
       <Header
         searchValue={searchQuery}
         onSearch={setSearchQuery}
       />
 
-      {/* Rutas definidas aquí para poder pasarle searchQuery a Home */}
+      {/* Rutas — el header queda siempre arriba */}
       <Routes>
         <Route path="/" element={<Home searchQuery={searchQuery} />} />
         <Route path="/favoritos" element={<Favoritos />} />
         <Route path="/detalles/:id" element={<Detalles />} />
-        <Route path="*" element={<Error404 />} />
       </Routes>
-
-      <Footer />
-    </Router>
+    </BrowserRouter>
   );
 }
 

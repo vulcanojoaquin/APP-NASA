@@ -8,6 +8,14 @@ export const getAllApod = async (searchQuery = '') => {
         : BASE_URL;
 
     const response = await fetch(url);
+    
+    // SOLUCIÓN AL BUG: Si MockAPI no encuentra nada, devuelve un error 404.
+    // Si no atajamos esto, intenta hacer un map sobre un string "Not found" y se rompe.
+    // Si no hay respuesta OK, devolvemos un array vacío para que React no falle.
+    if (!response.ok) {
+        return [];
+    }
+    
     return response.json();
 };
 
