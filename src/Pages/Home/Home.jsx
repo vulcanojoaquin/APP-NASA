@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { getAllApod } from "../../services/apodService"; // Rescatamos el servicio de tu compañero
+import Card from '../../Components/Card/Card';
 
 const Home = ({ searchQuery }) => {
   const [data, setData] = useState([]);
@@ -37,20 +38,17 @@ const Home = ({ searchQuery }) => {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {data.map((item) => (
-          <div
-            key={item.id}
-            className="bg-slate-800 rounded-xl overflow-hidden shadow-lg hover:scale-105 transition-transform duration-300"
-          >
+          <Card key={item.id} className="bg-white hover:scale-105 transition-transform duration-300 border-gray-200">
             <img
               src={item.hdurl}
               alt={item.title}
               className="w-full h-48 object-cover"
             />
             <div className="p-4">
-              <h2 className="text-white font-semibold text-lg">{item.title}</h2>
-              <p className="text-gray-400 text-sm mt-1">{item.date}</p>
+              <h2 className="!text-black font-semibold text-lg">{item.title}</h2>
+              <p className="!text-gray-600 text-sm mt-1">{item.date}</p>
             </div>
-          </div>
+          </Card>
         ))}
       </div>
     </main>
