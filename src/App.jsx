@@ -1,39 +1,44 @@
-import { useState,useEffect } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import { useState } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Header from './Components/Header/Header';
+import Home from './Pages/Home/Home'; // Importamos el Home real
+import './App.css';
+
+// ── Páginas placeholder (las vas a crear en tareas siguientes) ──
+const Favoritos = () => (
+  <main className="p-8 text-white">
+    <h1 className="text-3xl font-bold">⭐ Favoritos</h1>
+    <p className="mt-2 text-gray-400">Aún no tenés favoritos guardados.</p>
+  </main>
+);
+
+const Detalles = () => (
+  <main className="p-8 text-white">
+    <h1 className="text-3xl font-bold">🔭 Detalle</h1>
+    <p className="mt-2 text-gray-400">Aquí se mostrará el detalle del elemento.</p>
+  </main>
+);
 
 function App() {
-
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    fetch("https://69eb6fd597482ad5c527b5ee.mockapi.io/api/planetas/APOD")
-      .then((res) => res.json())
-      .then((json) => {
-        console.log(json); // 👈 para probar
-        setData(json);
-      })
-      .catch((error) => console.log(error));
-  }, []);
+  const [searchQuery, setSearchQuery] = useState('');
 
   return (
-    <div >
-      <h1>API NASA</h1>
-    <div style={{display: "flex", flexDirection:"column", gap:"20px"}}>
-      {data.map((item) => (
-        <div key={item.id}>
-          <h3>{item.title}</h3>
-          <img src={item.hdurl} width="200" />
-          <p>{item.date}</p>
-        </div>
-      ))}
-    </div>
-    <section>
-       <div className="ticks"></div>
-       <section id="spacer"></section>
-    </section>
-  </div>
- )
+    <BrowserRouter>
+      {/* Header sticky — visible en TODAS las páginas */}
+      <Header
+        searchValue={searchQuery}
+        onSearch={setSearchQuery}
+      />
+
+      {/* Rutas — el header queda siempre arriba */}
+      <Routes>
+        {/* Acá le pasamos el searchQuery al Home para que filtre */}
+        <Route path="/" element={<Home searchQuery={searchQuery} />} />
+        <Route path="/favoritos" element={<Favoritos />} />
+        <Route path="/detalles/:id" element={<Detalles />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
+
+export default App;
