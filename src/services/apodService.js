@@ -2,10 +2,11 @@ const BASE_URL = 'https://69eb6fd597482ad5c527b5ee.mockapi.io/api/planetas/APOD'
 
 // Le agregamos el parámetro searchQuery por defecto vacío
 export const getAllApod = async (page = 1, limit = 10, searchQuery = '') => { // si no se pasa valor por parametro, se usa por default 1 al 10
-    // Si hay un texto de búsqueda, le agregamos ?search= a la URL
-    const url = searchQuery
-        ? `${BASE_URL}?search=${searchQuery}`
-        : `${BASE_URL}?page=${page}&limit=${limit}`;
+    // Siempre enviamos paginación; si hay búsqueda, filtramos solo por título
+    let url = `${BASE_URL}?page=${page}&limit=${limit}`;
+    if (searchQuery) {
+        url += `&title=${searchQuery}`;
+    }
 
     const response = await fetch(url);
     
