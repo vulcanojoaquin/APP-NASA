@@ -17,10 +17,13 @@ const Home = ({ searchQuery }) => {
 
   // Cargar datos
   useEffect(() => {
+    let ignore = false; // 1. Bandera para ignorar respuestas viejas
+
     setLoading(true);
 
     getAllApod(page, 10, searchQuery)
       .then((responseData) => {
+        if (ignore) return; // 2. Si la petición fue cancelada, no hacemos nada
         if (responseData.length === 0) {
           setHasMore(false);
         } else {
@@ -28,13 +31,19 @@ const Home = ({ searchQuery }) => {
             page === 1 ? responseData : [...prev, ...responseData]
           );
         }
-
         setLoading(false);
       })
       .catch((error) => {
+        if (ignore) return;
         console.error(error);
         setLoading(false);
       });
+
+    // 3. Cleanup: si searchQuery o page cambian antes de que llegue la respuesta,
+    // marcamos ignore = true para que esa respuesta vieja no duplique datos.
+    return () => {
+      ignore = true;
+    };
   }, [searchQuery, page]);
 
   // Infinite Scroll
