@@ -55,7 +55,7 @@ const Home = ({ searchQuery }) => {
   }, [loading, hasMore]);
 
   return (
-    <main className="p-6 min-h-screen bg-slate-950">
+    <main className="w-full p-6 min-h-screen bg-slate-950">
       <h1 className="text-3xl font-bold text-white mb-6">
         🚀 NASA App
       </h1>
