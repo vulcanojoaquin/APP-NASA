@@ -45,7 +45,7 @@ const Header = ({ onSearch, searchValue }) => {
           </select>
 
           {/* Botón Favoritos */}
-          <Link to="/favoritos">
+          <Link to="/favorites">
             <Button
               variant="outline"
               className="flex items-center gap-2 border-white/30 text-white hover:bg-white/10 focus:ring-white/40"

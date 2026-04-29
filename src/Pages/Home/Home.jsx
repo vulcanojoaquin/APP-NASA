@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { getAllApod } from "../../services/apodService";
 import Card from '../../Components/Card/Card';
 import { Link } from 'react-router-dom';
+import FavoriteButton from '../../Components/FavoriteButton/FavoriteButton';
+
 const Home = ({ searchQuery }) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -97,11 +99,16 @@ const Home = ({ searchQuery }) => {
             key={item.id || index}
             className="bg-white hover:scale-105 transition-transform duration-300 border-gray-200"
           >
-            <img
-              src={item.hdurl || item.url}
-              alt={item.title}
-              className="w-full h-48 object-cover"
-            />
+            <div className="relative">
+              <img
+                src={item.hdurl || item.url}
+                alt={item.title}
+                className="w-full h-48 object-cover"
+              />
+              <div className="absolute top-2 right-2">
+                <FavoriteButton item={item} />
+              </div>
+            </div>
 
             <div className="p-4">
               <h2 className="!text-black font-semibold text-lg">
