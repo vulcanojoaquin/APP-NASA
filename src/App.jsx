@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './Components/Header/Header';
 import Home from './Pages/Home/Home';
+import Favorites from './Pages/Favorites/Favorites';
+import Details from './Pages/Details/Details';
 
 const Favoritos = () => (
   <main className="w-full p-8 text-white min-h-screen bg-slate-950">
@@ -31,8 +33,8 @@ function App() {
       {/* Rutas — el header queda siempre arriba */}
       <Routes>
         <Route path="/" element={<Home searchQuery={searchQuery} />} />
-        <Route path="/favoritos" element={<Favoritos />} />
-        <Route path="/detalles/:id" element={<Detalles />} />
+        <Route path="/favorites" element={<Favorites />} />
+        <Route path="/details/:id" element={<Details />} />
       </Routes>
     </BrowserRouter>
   );
