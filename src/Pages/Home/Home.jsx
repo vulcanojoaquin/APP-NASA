@@ -23,6 +23,8 @@ const Home = ({ searchQuery }) => {
 
     getAllApod(page, 10, searchQuery)
       .then((responseData) => {
+        console.log("apodd",responseData,hasMore,ignore);
+        
         if (ignore) return; // 2. Si la petición fue cancelada, no hacemos nada
         if (responseData.length === 0) {
           setHasMore(false);
@@ -42,17 +44,19 @@ const Home = ({ searchQuery }) => {
     // 3. Cleanup: si searchQuery o page cambian antes de que llegue la respuesta,
     // marcamos ignore = true para que esa respuesta vieja no duplique datos.
     return () => {
-      ignore = true;
+     // ignore = true;
     };
   }, [searchQuery, page]);
 
   // Infinite Scroll
   useEffect(() => {
     const handleScroll = () => {
+      
       const nearBottom =
-        window.innerHeight + window.scrollY >=
-        document.body.offsetHeight - 200;
-
+      window.innerHeight + window.scrollY >=
+      document.body.offsetHeight - 10;
+      
+      console.log(loading,nearBottom,hasMore);
       if (nearBottom && !loading && hasMore) {
         setPage((prev) => prev + 1);
       }
