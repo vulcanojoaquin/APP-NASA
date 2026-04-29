@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { getAllApod } from "../../services/apodService";
 import Card from '../../Components/Card/Card';
-
+import { Link } from 'react-router-dom';
 const Home = ({ searchQuery }) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -65,10 +65,20 @@ const Home = ({ searchQuery }) => {
 
   return (
     <main className="w-full p-6 min-h-screen bg-slate-950">
-      <h1 className="text-3xl font-bold text-white mb-6">
-        🚀 NASA App
-      </h1>
-
+          {/* Hero Section */}
+    <section 
+      className="relative w-full h-96 flex items-center justify-center"
+      style={{ backgroundImage: `url(https://futuroelectrico.com/wp-content/uploads/2020/06/Exploracion-Espacial.jpg)`,backgroundAttachment:'fixed', backgroundSize: 'cover', backgroundPosition: 'center' }}
+    >
+      {/* Overlay oscuro para que el texto se lea bien */}
+      <div className="absolute inset-0 bg-black/60" />
+      
+      {/* Texto encima */}
+      <div className="relative z-10 text-center text-white px-4">
+        <h1 className="text-5xl font-bold mb-4">NASA App</h1>
+        <p className="text-xl text-gray-300">Explorá las imágenes astronómicas más increíbles</p>
+      </div>
+    </section>
       {loading && (
         <p className="text-gray-400">Cargando...</p>
       )}
@@ -80,7 +90,9 @@ const Home = ({ searchQuery }) => {
       )}
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
         {data.map((item, index) => (
+          <Link to={`/details/${item.id}`} key={item.id}>
           <Card
             key={item.id || index}
             className="bg-white hover:scale-105 transition-transform duration-300 border-gray-200"
@@ -101,6 +113,7 @@ const Home = ({ searchQuery }) => {
               </p>
             </div>
           </Card>
+          </Link>
         ))}
       </div>
     </main>
