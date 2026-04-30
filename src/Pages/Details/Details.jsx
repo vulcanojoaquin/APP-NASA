@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom"
 import { useState,useEffect } from "react"
 import { getApodById } from "../../services/apodService"
 import { Link } from "react-router-dom"
+import FavoriteButton from "../../Components/FavoriteButton/FavoriteButton"
 
 const  Details =() => {
 
@@ -38,7 +39,10 @@ return (
 
       {/* Texto derecha */}
     <div className="md:w-1/2 flex flex-col gap-4">
-        <h1 className="text-3xl font-bold">{item.title}</h1>
+        <div className="flex justify-between items-center">
+            <h1 className="text-3xl font-bold">{item.title}</h1>
+            <FavoriteButton item={item} />
+        </div>
         <p className="text-blue-400 text-sm">{item.date}</p>
         <p className="text-gray-300 leading-relaxed">{item.explanation}</p>
         {item.copyright && (
