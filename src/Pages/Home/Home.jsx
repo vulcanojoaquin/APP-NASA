@@ -25,7 +25,6 @@ const Home = ({ searchQuery }) => {
 
     getAllApod(page, 10, searchQuery)
       .then((responseData) => {
-        console.log("apodd",responseData,hasMore,ignore);
         
         if (ignore) return; // 2. Si la petición fue cancelada, no hacemos nada
         if (responseData.length === 0) {
@@ -64,6 +63,7 @@ const Home = ({ searchQuery }) => {
       }
     };
 
+    
     window.addEventListener("scroll", handleScroll);
 
     return () => window.removeEventListener("scroll", handleScroll);
@@ -99,6 +99,7 @@ const Home = ({ searchQuery }) => {
 
         {data.map((item, index) => (
           <Link to={`/details/${item.id}`} key={item.id}>
+            
           <Card
             key={item.id || index}
             className="bg-white hover:scale-105 transition-transform duration-300 border-gray-200"

@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom"
 import { useState,useEffect } from "react"
 import { getApodById } from "../../services/apodService"
 import { Link } from "react-router-dom"
+import Error404 from "../Error404/Error404"
 import FavoriteButton from "../../Components/FavoriteButton/FavoriteButton"
 
 const  Details =() => {
@@ -9,15 +10,25 @@ const  Details =() => {
     const { id } = useParams() // con esto se obtiene el id de la url
     const [item, setItem] = useState(null)
     const [loading,setLoading] = useState(true)
+    const [notFound,setNotFound] = useState(false)
 
     useEffect(() =>{
         getApodById(id).then (data => {
+            if (data === null){
+                setNotFound(true)                
+            }
+            else{
             setItem(data);
+            }
             setLoading(false)
+            console.log(notFound,data);
+            
         })
     }, [id]);
 
+
     if (loading) return <p className="text-white">Cargando...</p>;
+    if (notFound) return <Error404/>
 
 return (
     <main className="p-6 min-h-screen bg-slate-950 text-white">
