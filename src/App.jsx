@@ -4,20 +4,7 @@ import Header from './Components/Header/Header';
 import Home from './Pages/Home/Home';
 import Favorites from './Pages/Favorites/Favorites';
 import Details from './Pages/Details/Details';
-
-const Favoritos = () => (
-  <main className="w-full p-8 text-white min-h-screen bg-slate-950">
-    <h1 className="text-3xl font-bold">⭐ Favoritos</h1>
-    <p className="mt-2 text-gray-400">Aún no tenés favoritos guardados.</p>
-  </main>
-);
-
-const Detalles = () => (
-  <main className="w-full p-8 text-white min-h-screen bg-slate-950">
-    <h1 className="text-3xl font-bold">🔭 Detalle</h1>
-    <p className="mt-2 text-gray-400">Aquí se mostrará el detalle del elemento.</p>
-  </main>
-);
+import Footer from './Components/Footer/Footer';
 
 function App() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -35,7 +22,8 @@ function App() {
         <Route path="/" element={<Home searchQuery={searchQuery} />} />
         <Route path="/favorites" element={<Favorites />} />
         <Route path="/details/:id" element={<Details />} />
-      </Routes>
+      </Routes>|
+      <Footer />
     </BrowserRouter>
   );
 }

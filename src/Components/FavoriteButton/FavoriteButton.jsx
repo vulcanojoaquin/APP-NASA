@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { isFavorite, toggleFavorite } from '../../utils/favoritesStorage';
 
 const FavoriteButton = ({ item }) => {
+    const { t } = useTranslation();
     const [favorited, setFavorited] = useState(false);
 
     useEffect(() => {
@@ -23,7 +25,7 @@ const FavoriteButton = ({ item }) => {
                 ? 'bg-yellow-500 text-white scale-110 shadow-lg' 
                 : 'bg-white/20 text-white backdrop-blur-md hover:bg-white/40'
             }`}
-            title={favorited ? "Quitar de favoritos" : "Agregar a favoritos"}
+            title={favorited ? t('favoriteButton.remove') : t('favoriteButton.add')}
         >
             <svg 
                 xmlns="http://www.w3.org/2000/svg" 

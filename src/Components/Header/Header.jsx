@@ -3,8 +3,10 @@ import { Link } from 'react-router-dom';
 import LogoLink from '../LogoLink/LogoLink';
 import SearchBar from '../SearchBar/SearchBar';
 import Button from '../Button/Button';
+import { useTranslation } from 'react-i18next';
 
 const Header = ({ onSearch, searchValue }) => {
+  const { t, i18n } = useTranslation();
   const [lang, setLang] = useState(
     () => localStorage.getItem('lang') || 'es'
   );
@@ -13,6 +15,7 @@ const Header = ({ onSearch, searchValue }) => {
     const selected = e.target.value;
     setLang(selected);
     localStorage.setItem('lang', selected);
+    i18n.changeLanguage(selected);
   };
 
   return (
@@ -27,7 +30,7 @@ const Header = ({ onSearch, searchValue }) => {
           <SearchBar
             value={searchValue}
             onChange={(e) => onSearch && onSearch(e.target.value)}
-            placeholder="Buscar imagen NASA..."
+            placeholder={t('header.searchPlaceholder')}
           />
         </div>
 
@@ -58,7 +61,7 @@ const Header = ({ onSearch, searchValue }) => {
               >
                 <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
               </svg>
-              Favoritos
+              {t('header.favorites')}
             </Button>
           </Link>
 

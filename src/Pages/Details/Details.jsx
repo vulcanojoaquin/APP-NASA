@@ -1,11 +1,13 @@
 import { useParams } from "react-router-dom"
-import { useState,useEffect } from "react"
+import { useState, useEffect } from "react"
+import { useTranslation } from 'react-i18next';
 import { getApodById } from "../../services/apodService"
 import { Link } from "react-router-dom"
 import Error404 from "../Error404/Error404"
 import FavoriteButton from "../../Components/FavoriteButton/FavoriteButton"
 
 const  Details =() => {
+    const { t } = useTranslation();
 
     const { id } = useParams() // con esto se obtiene el id de la url
     const [item, setItem] = useState(null)
@@ -27,13 +29,13 @@ const  Details =() => {
     }, [id]);
 
 
-    if (loading) return <p className="text-white">Cargando...</p>;
+    if (loading) return <p className="text-white">{t('details.loading')}</p>;
     if (notFound) return <Error404/>
 
 return (
     <main className="p-6 min-h-screen bg-slate-950 text-white">
-    <Link to="/" className="text-blue-400 hover:text-blue-300 mb-6 inline-block"> {/*boton para volver al home */}
-        ← Volver
+    <Link to="/" className="text-blue-400 hover:text-blue-300 mb-6 inline-block">
+        {t('details.back')}
     </Link>
 
     {/* Layout flex: imagen izquierda, texto derecha */}

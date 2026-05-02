@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import Card from '../../Components/Card/Card';
 import { Link } from 'react-router-dom';
 import FavoriteButton from '../../Components/FavoriteButton/FavoriteButton';
 import { getFavorites } from '../../utils/favoritesStorage';
 
 const Favorites = () => {
+    const { t } = useTranslation();
     const [favorites, setFavorites] = useState([]);
 
     useEffect(() => {
@@ -20,14 +22,14 @@ const Favorites = () => {
     return (
         <main className="w-full p-6 min-h-screen bg-slate-950">
             <h1 className="text-3xl font-bold text-white mb-6">
-                ⭐ Mis Favoritos
+                {t('favorites.title')}
             </h1>
 
             {favorites.length === 0 ? (
                 <div className="flex flex-col items-center justify-center mt-20">
-                    <p className="text-gray-400 text-xl mb-4">No tenés favoritos aún.</p>
+                    <p className="text-gray-400 text-xl mb-4">{t('favorites.empty')}</p>
                     <Link to="/" className="text-blue-400 hover:underline">
-                        Volver al inicio para agregar algunos 🚀
+                        {t('favorites.goHome')}
                     </Link>
                 </div>
             ) : (
