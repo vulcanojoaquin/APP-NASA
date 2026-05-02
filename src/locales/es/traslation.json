@@ -1,5 +1,34 @@
 {
     "home": {
-        "title": ""
+        "title": "NASA App",
+        "subtitle": "Explorá las imágenes astronómicas más increíbles",
+        "loading": "Cargando...",
+        "noResults": "😕 No se encontraron elementos para tu búsqueda."
+    },
+    "header": {
+        "searchPlaceholder": "Buscar imagen NASA...",
+        "favorites": "Favoritos"
+    },
+    "details": {
+        "loading": "Cargando...",
+        "back": "← Volver"
+    },
+    "favorites": {
+        "title": "⭐ Mis Favoritos",
+        "empty": "No tenés favoritos aún.",
+        "goHome": "Volver al inicio para agregar algunos 🚀"
+    },
+    "error404": {
+        "title": "Oops! Página no encontrada",
+        "message": "Parece que te has perdido en el espacio. La ruta que intentás buscar no existe o fue movida.",
+        "button": "Volver al Inicio"
+    },
+    "favoriteButton": {
+        "add": "Agregar a favoritos",
+        "remove": "Quitar de favoritos"
+    },
+    "footer": {
+        "title": "NASA App PWA",
+        "subtitle": "Explorando el universo todos los días"
     }
 }
