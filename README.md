@@ -1,16 +1,63 @@
-# React + Vite
+# APP-NASA (Trabajo Práctico 2)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Miembros del Equipo
+- **[JOAQUIN DAL DOSSO VULCANO]** - (PM / Scrum Master & Desarrollador)
+- **[MATTEO ALDAY]** - (Desarrollador)
+- **[FIDEL PIZARRO]** - (Desarrollador)
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+##  Descripción de la Aplicación
+Esta es una Single Page Application (SPA) desarrollada para el Trabajo Práctico 2. La aplicación simula un explorador de imágenes espaciales basado en la API APOD (Astronomy Picture of the Day) de la NASA. 
 
-## React Compiler
+###  Funcionalidades Principales:
+- **Exploración de Galería:** Visualización paginada de tarjetas con imágenes espaciales consumidas desde MockAPI.
+- **Buscador Integrado:** Filtrado de imágenes por título en tiempo real desde la barra de navegación.
+- **Vista de Detalle:** Ruta dinámica (`/details/:id`) que permite ver la información completa y ampliada de una imagen específica.
+- **Sección de Favoritos:** Ruta dedicada (`/favorites`) para gestionar los elementos guardados.
+- **Internacionalización (i18n):** Soporte multi-idioma integrado para cambiar el idioma de la interfaz.
+- **Diseño Moderno:** Interfaz responsiva y estilizada utilizando Tailwind CSS.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+##  Tecnologías Utilizadas
+- **Core:** React 19 + Vite
+- **Enrutamiento:** React Router DOM 7
+- **Estilos:** Tailwind CSS 4
+- **Internacionalización:** i18next / react-i18next
+- **Datos:** Fetch API conectada a un entorno de MockAPI
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## Instrucciones de Instalación y Ejecución
+
+Sigue estos pasos para levantar el proyecto en tu entorno local:
+
+### Prerrequisitos
+- Tener instalado [Node.js](https://nodejs.org/) en tu computadora.
+- Tener instalado Git.
+
+### Paso a paso
+
+1. **Clonar el repositorio:**
+   Abre tu terminal e ingresa el siguiente comando (reemplaza la URL por la de tu repo):
+   ```bash
+   git clone <URL_DEL_REPOSITORIO>
+   ```
+2. **Navegar al directorio del proyecto:**
+   ```bash
+   cd TP-PWA
+   ```
+3. **Instalar las dependencias:**
+   ```bash
+   npm install
+   ```
+4. **Ejecutar la aplicación:**
+   ```bash
+   npm run dev
+   ```
+### Estructura del Proyecto
+- /src/Components: Componentes de interfaz reutilizables (Header, Footer, tarjetas).
+- /src/Pages: Las vistas principales de enrutamiento (Home, Favorites, Details).
+- /src/services: Servicios de conexión a la API (ej: apodService.js).
+- /src/locales: Archivos de configuración para la traducción de idiomas.

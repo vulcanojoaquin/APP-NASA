@@ -22,7 +22,7 @@ function App() {
         <Route path="/" element={<Home searchQuery={searchQuery} />} />
         <Route path="/favorites" element={<Favorites />} />
         <Route path="/details/:id" element={<Details />} />
-      </Routes>|
+      </Routes>
       <Footer />
     </BrowserRouter>
   );
