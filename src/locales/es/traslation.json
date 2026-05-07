@@ -3,7 +3,7 @@
         "title": "NASA App",
         "subtitle": "Explorá las imágenes astronómicas más increíbles",
         "loading": "Cargando...",
-        "noResults": "😕 No se encontraron elementos para tu búsqueda."
+        "noResults": " No se encontraron elementos para tu búsqueda."
     },
     "header": {
         "searchPlaceholder": "Buscar imagen NASA...",
@@ -14,9 +14,9 @@
         "back": "← Volver"
     },
     "favorites": {
-        "title": "⭐ Mis Favoritos",
+        "title": " Mis Favoritos",
         "empty": "No tenés favoritos aún.",
-        "goHome": "Volver al inicio para agregar algunos 🚀"
+        "goHome": "Volver al inicio para agregar algunos"
     },
     "error404": {
         "title": "Oops! Página no encontrada",
