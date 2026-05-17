@@ -3,26 +3,26 @@ import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import Favorites from './Favorites';
 
-// Mockeamos i18next
+
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({
     t: (key) => key,
   }),
 }));
 
-// Mockeamos FavoriteButton para simplificar (no necesitamos testearlo aquí)
+
 vi.mock('../../Components/FavoriteButton/FavoriteButton', () => ({
   default: () => <button>★</button>,
 }));
 
-// Mockeamos el storage: controlamos qué favoritos "hay guardados"
+
 vi.mock('../../utils/favoritesStorage', () => ({
   getFavorites: vi.fn(),
 }));
 
 import { getFavorites } from '../../utils/favoritesStorage';
 
-// Helper: renderiza con el Router que necesita el <Link> interno
+
 const renderFavorites = () =>
   render(
     <MemoryRouter>

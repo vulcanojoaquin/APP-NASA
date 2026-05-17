@@ -3,14 +3,13 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import FavoriteButton from './FavoriteButton';
 
-// Mockeamos i18next para que no falle por falta de proveedor de idioma
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({
-    t: (key) => key, // devuelve la clave tal cual, ej: 'favoriteButton.add'
+    t: (key) => key,
   }),
 }));
 
-// Mockeamos el módulo de storage para controlar qué devuelve en cada test
+
 vi.mock('../../utils/favoritesStorage', () => ({
   isFavorite: vi.fn(),
   toggleFavorite: vi.fn(),
@@ -21,7 +20,7 @@ import { isFavorite, toggleFavorite } from '../../utils/favoritesStorage';
 const fakeItem = { id: '1', title: 'Galaxia Andrómeda' };
 
 beforeEach(() => {
-  vi.clearAllMocks(); // limpiamos los mocks antes de cada test
+  vi.clearAllMocks();
 });
 
 describe('FavoriteButton', () => {
