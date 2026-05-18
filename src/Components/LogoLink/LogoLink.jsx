@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 
 const LogoLink = ({ to = "/", className = '', ...props }) => {
   return (
-    <Link 
-      to={to} 
+    <Link
+      to={to}
+      aria-label="NASA App"
       className={`flex items-center gap-3 group transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-lg p-1 ${className}`}
       {...props}
     >
